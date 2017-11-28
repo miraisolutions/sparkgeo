@@ -15,6 +15,7 @@ object Main {
       .option("magellan.index", "true")
       .load(path)
       .select($"polygon", $"metadata"("neighborhood").as("name"))
+      .cache()
   }
 
   private var neighborhoods: DataFrame = _
