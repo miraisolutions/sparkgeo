@@ -1,0 +1,22 @@
+Package: sparknyc
+Type: Package
+Title: sparknyc: NYC neighborhood matching
+Version: 0.1.0
+Authors@R: c(person(family = "Mirai Solutions GmbH", role = "aut",
+                    email = "info@mirai-solutions.com"),
+             person("Martin", "Studer", role = "cre",
+                    email = "martin.studer@mirai-solutions.com"),
+             person("Nicola", "Lambiase", role = c("ctb"),
+                    email = "nicola.lambiase@mirai-solutions.com"),
+             person("Ömer", "Demirel", role = c("ctb"),
+                    email = "omer.demirel@mirai-solutions.com"))
+Description: The 'sparknyc' package is a 'sparklyr' extension package providing NYC geospatial
+  neighborhood matching.
+Depends: R (>= 3.3.2)
+Imports: sparklyr
+Suggests: dplyr
+License: GPL-3
+SystemRequirements: Java (>= 1.8)
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 6.0.1
