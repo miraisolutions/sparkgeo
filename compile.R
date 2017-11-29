@@ -1,3 +1,6 @@
+# as root
+sparklyr::download_scalac()
+
 spec <- sparklyr::spark_default_compilation_spec()
 spec <- Filter(function(e) e$spark_version >= "2.0.0", spec)
 spec <- Map(function(e) {
