@@ -92,7 +92,7 @@ nyc_neighborhoods <- geojsonio::geojson_read(geoJsonfile,
 average_tips_with_shapes <- nyc_neighborhoods
 average_tips_with_shapes@data <- merge(nyc_neighborhoods@data, average_tips_per_neighborhood, all.x = T)
 
-pal <- colorNumeric(c("#00FF00", "#FFFF00", "#FF0000"), average_tips_with_shapes$avg_tip_pct)
+pal <- colorNumeric(c("#FF0000", "#FFFF00", "#00FF00"), average_tips_with_shapes$avg_tip_pct)
 
 average_tips_with_shapes %>%
   leaflet() %>%
