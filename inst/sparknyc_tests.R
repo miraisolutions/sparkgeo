@@ -42,7 +42,7 @@ bigquery_defaults(
 )
 
 start.pickup.time = as.POSIXct("2014-01-06 13:00:00", tz = "UTC")
-end.pickup.time = as.POSIXct("2014-01-12 13:30:00", tz = "UTC")
+end.pickup.time = as.POSIXct("2014-01-06 13:30:00", tz = "UTC")
 
 # trips <-
 #   spark_read_bigquery(
@@ -111,23 +111,3 @@ average_tips_with_shapes %>%
             labFormat = labelFormat(
               suffix = ' %',
               transform = function(x) 100 * x))
-
-# only 2 observations, of which one with a very generous person
-boerum_hill_check<- spark_read_bigquery(
-  sc = sc,
-  name = "trips2014",
-  projectId = "bigquery-public-data",
-  sqlQuery = paste0('SELECT * FROM `bigquery-public-data.new_york.tlc_yellow_trips_2014` WHERE pickup_datetime >= "', 
-                    format(start.pickup.time), 
-                    '" AND pickup_datetime < "',
-                    format(end.pickup.time),
-                    '"')
-) %>%
-  filter(payment_type == "CRD") %>%
-  select(pickup_latitude, pickup_longitude, tip_amount, total_amount) %>% # pickup_datetime,
-  mutate(
-    tip_pct = tip_amount / total_amount,
-    neighborhood = neighborhood(pickup_latitude, pickup_longitude)
-  ) %>%
-  filter(neighborhood == "Boerum Hill") %>%
-  collect()
