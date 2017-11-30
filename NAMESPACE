@@ -2,6 +2,8 @@
 
 export(spark_read_geojson)
 export(sparkgeo_register_udfs)
+export(spatial_join)
+import(dplyr)
 importFrom(sparklyr,invoke_static)
 importFrom(sparklyr,register_extension)
 importFrom(sparklyr,spark_read_source)
