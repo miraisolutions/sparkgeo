@@ -26,7 +26,7 @@ spatial_join <- function(x, y, latitude, longitude, polygon) {
 
   x %>%
     mutate(dummy = TRUE) %>% # https://github.com/tidyverse/dplyr/issues/1841
-    inner_join(y %>% mutate(dummy = TRUE)) %>%
+    inner_join(y %>% mutate(dummy = TRUE), by = "dummy") %>%
     mutate(is_within = within(point(!!latitude, !!longitude), !!polygon)) %>%
     filter(is_within) %>%
     select(-one_of("dummy", "is_within"))
