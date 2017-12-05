@@ -13,7 +13,7 @@ Authors@R: c(person(family = "Mirai Solutions GmbH", role = "aut",
 Description: The 'sparkgeo' package is a 'sparklyr' extension package providing geospatial
   analytics capabilities to Spark and R.
 Depends: R (>= 3.3.2)
-Imports: sparklyr, dplyr
+Imports: sparklyr (>= 0.6.4), dplyr (>= 0.7.0)
 License: GPL-3 | file LICENSE
 SystemRequirements: Java (>= 1.8), Spark 2.x
 Encoding: UTF-8
