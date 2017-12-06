@@ -68,3 +68,15 @@ museums %>%
   top_n(5) %>%
   collect()
 ```
+
+The last `dplyr` pipeline returns:
+```
+# A tibble: 5 x 2
+        neighborhood num_museums
+               <chr>       <dbl>
+1    Upper East Side          13
+2            Chelsea          11
+3            Midtown           9
+4               SoHo           8
+5 Financial District           7
+```
