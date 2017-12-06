@@ -41,25 +41,17 @@ neighborhoods <-
   select(neighborhood, polygon, index) %>%
   sdf_persist()
 
+# Download and transform locations of New York City museums
+# (https://catalog.data.gov/dataset/new-york-city-museums)
 museums.data <- 
   read.csv("https://data.cityofnewyork.us/api/views/fn6f-htvy/rows.csv?accessType=DOWNLOAD", stringsAsFactors = FALSE) %>%
   mutate(name = NAME, coordinates = sub("POINT \\((.+) (.+)\\)$", "\\1,\\2", the_geom)) %>%
   select(name, coordinates)
-
 museums.coordinates <- data.frame(do.call('rbind', strsplit(museums.data$coordinates, split = ",", fixed = TRUE)))
 names(museums.coordinates) <- c("longitude", "latitude")
-
 museums.df <- cbind(museums.data, museums.coordinates) %>% select(name, latitude, longitude)
 
-# Coordinates of some places in NYC
-places.df <- data.frame(
-  name = c("Statue of Liberty", "Columbia University", "The Metropolitan Museum of Art"),
-  latitude = c(40.6892474, 40.814856, 40.77944365),
-  longitude = c(-74.0445405280149, -73.9610162365099,-73.9633641138519),
-  stringsAsFactors = FALSE)
-
 # Create Spark DataFrame from local R data.frame
-#places <- copy_to(sc, places.df, "places")
 museums <- copy_to(sc, museums.df, "museums")
 
 # Perform a spatial join to associate museum coordinates to
