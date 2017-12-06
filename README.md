@@ -44,10 +44,13 @@ neighborhoods <-
 # Download and transform locations of New York City museums
 # (https://catalog.data.gov/dataset/new-york-city-museums)
 museums.data <- 
-  read.csv("https://data.cityofnewyork.us/api/views/fn6f-htvy/rows.csv?accessType=DOWNLOAD", stringsAsFactors = FALSE) %>%
+  read.csv("https://data.cityofnewyork.us/api/views/fn6f-htvy/rows.csv?accessType=DOWNLOAD",
+           stringsAsFactors = FALSE) %>%
   mutate(name = NAME, coordinates = sub("POINT \\((.+) (.+)\\)$", "\\1,\\2", the_geom)) %>%
   select(name, coordinates)
-museums.coordinates <- data.frame(do.call('rbind', strsplit(museums.data$coordinates, split = ",", fixed = TRUE)))
+museums.coordinates <- data.frame(
+  do.call('rbind', strsplit(museums.data$coordinates, split = ",", fixed = TRUE))
+)
 names(museums.coordinates) <- c("longitude", "latitude")
 museums.df <- cbind(museums.data, museums.coordinates) %>% select(name, latitude, longitude)
 
