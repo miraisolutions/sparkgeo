@@ -6,6 +6,6 @@ Sources for other open source software components can be obtained from the corre
 - Magellan
   Description: Geospatial Analytics Using Spark
   License: http://www.apache.org/licenses/LICENSE-2.0
-  JAR file: https://dl.bintray.com/spark-packages/maven/harsha2010/magellan/1.0.5-s_2.11/:magellan-1.0.5-s_2.11.jar
-  Sources JAR file: https://github.com/harsha2010/magellan/tree/v1.0.5
+  JAR file: https://dl.bintray.com/spark-packages/maven/harsha2010/magellan/1.0.5-s_2.11/magellan-1.0.5-s_2.11.jar
+  Source Code: https://github.com/harsha2010/magellan/tree/v1.0.5
 
