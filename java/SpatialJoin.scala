@@ -6,13 +6,20 @@ import org.apache.spark.sql.magellan.dsl.expressions._
 
 object SpatialJoin {
   private val pointColumnName = "point"
+  private val indexColumn = "index"
 
   def join(left: DataFrame, right: DataFrame, latitude: String, longitude: String, polygon: String,
            dropPolygon: Boolean = true): DataFrame = {
-    left
+    val df = left
       .withColumn(pointColumnName, point(col(longitude), col(latitude)))
       .join(right)
       .where(col(pointColumnName) within col("polygon"))
-      .drop(pointColumnName, polygon)
+      .drop(pointColumnName)
+
+    if(dropPolygon) {
+      df.drop(polygon, indexColumn)
+    } else {
+      df
+    }
   }
 }
