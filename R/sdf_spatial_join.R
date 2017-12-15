@@ -5,6 +5,9 @@
 #' @param latitude Latitude variable.
 #' @param longitude Longitude variable.
 #' @param polygon Variable representing the polygon to join.
+#' @param dropPolyAfterJoin \code{logical} specifying whether
+#' the polygon column (and the index if available) should be
+#' dropped after the join. Defaults to \code{TRUE}.
 #' @return \code{tbl_spark} resulting from the spatial join.
 #' @references
 #' \url{https://github.com/harsha2010/magellan}
@@ -15,7 +18,8 @@
 #' @importFrom sparklyr sdf_register
 #' @import dplyr
 #' @export
-sdf_spatial_join <- function(left, right, latitude, longitude, polygon = "polygon") {
+sdf_spatial_join <- function(left, right, latitude, longitude, polygon = "polygon",
+                             dropPolyAfterJoin = TRUE) {
   latitude <- quo_name(enquo(latitude))
   longitude <- quo_name(enquo(longitude))
   polygon <- quo_name(enquo(polygon))
@@ -25,5 +29,6 @@ sdf_spatial_join <- function(left, right, latitude, longitude, polygon = "polygo
   sc <- spark_connection(sdf_left)
 
   invoke_static(sc, "com.miraisolutions.spark.geo.SpatialJoin", "join", sdf_left,
-                sdf_right, latitude, longitude, polygon) %>% sdf_register()
+                sdf_right, latitude, longitude, polygon, dropPolyAfterJoin) %>%
+    sdf_register()
 }

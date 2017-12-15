@@ -4,7 +4,8 @@
 \alias{sdf_spatial_join}
 \title{Spatial Join}
 \usage{
-sdf_spatial_join(left, right, latitude, longitude, polygon = "polygon")
+sdf_spatial_join(left, right, latitude, longitude, polygon = "polygon",
+  dropPolyAfterJoin = TRUE)
 }
 \arguments{
 \item{left}{An object coercable to a Spark DataFrame.}
@@ -16,6 +17,10 @@ sdf_spatial_join(left, right, latitude, longitude, polygon = "polygon")
 \item{longitude}{Longitude variable.}
 
 \item{polygon}{Variable representing the polygon to join.}
+
+\item{dropPolyAfterJoin}{\code{logical} specifying whether
+the polygon column (and the index if available) should be
+dropped after the join. Defaults to \code{TRUE}.}
 }
 \value{
 \code{tbl_spark} resulting from the spatial join.
