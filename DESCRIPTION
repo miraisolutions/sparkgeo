@@ -1,7 +1,7 @@
 Package: sparkgeo
 Type: Package
 Title: Geospatial Analytics for Spark
-Version: 0.1.0
+Version: 0.1.0-9000
 Authors@R: c(person(family = "Mirai Solutions GmbH", role = "aut",
                     email = "info@mirai-solutions.com"),
              person("Martin", "Studer", role = "cre",
