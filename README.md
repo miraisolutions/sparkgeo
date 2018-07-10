@@ -46,7 +46,7 @@ museums.df <-
   read.csv("https://data.cityofnewyork.us/api/views/fn6f-htvy/rows.csv?accessType=DOWNLOAD",
            stringsAsFactors = FALSE) %>%
   extract(the_geom, into = c("longitude", "latitude"),
-          regex = "coordinates=List\\((-?\\d+\\.?\\d*), (-?\\d+\\.?\\d*)\\)") %>%
+          regex = "POINT \\((-?\\d+\\.?\\d*) (-?\\d+\\.?\\d*)\\)") %>%
   mutate(longitude = as.numeric(longitude), latitude = as.numeric(latitude)) %>%
   rename(name = NAME) %>%
   select(name, latitude, longitude)
