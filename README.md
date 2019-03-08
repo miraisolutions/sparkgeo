@@ -64,6 +64,9 @@ museums %>%
   summarize(num_museums = n()) %>%
   top_n(5) %>%
   collect()
+
+# Stop local Spark cluster
+spark_disconnect(sc)
 ```
 
 The last `dplyr` pipeline returns:
