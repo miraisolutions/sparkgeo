@@ -42,5 +42,6 @@ Imports data from GeoJSON files into Spark DataFrames.
 \seealso{
 \code{\link[sparklyr]{spark_read_source}}
 }
+\concept{Spark serialization routines}
 \keyword{connection}
 \keyword{file,}
